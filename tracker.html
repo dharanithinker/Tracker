@@ -24,29 +24,39 @@
 
     @media (max-width: 900px) {
       .hero { padding: 1rem; }
-      .launch-card { min-height: 250px; }
-      .countdown { font-size: clamp(1.5rem, 8vw, 3rem); letter-spacing: 0.06em; }
+      .launch-card { min-height: 220px; }
+      .countdown { font-size: clamp(1.4rem, 8vw, 2.7rem); letter-spacing: 0.06em; }
       .titlebox h1 { font-size: clamp(1.8rem, 8vw, 2.8rem); }
       .titlebox p { font-size: 0.95rem; }
     }
 
     @media (max-width: 550px) {
       .grid-2 { grid-template-columns: 1fr; }
-      .launch-card { padding: 0.5rem; }
+      .launch-card { padding: 0.5rem !important; min-height: 160px; }
       .launch-head h2 { font-size: 1rem; }
       .tag { font-size:0.68rem; padding:.2rem .5rem; }
       .progress-wrap { height: 8px; }
       .rocket { width: 12px; height: 28px; bottom: 12px; right: 11px; }
     }
 
-    .launch-card { background: linear-gradient(145deg, rgba(2,14,44,0.94) 0%, rgba(8,29,76,0.97) 85%); border: 1px solid rgba(82, 155, 255, 0.3); border-radius: 1rem; box-shadow: 0 0 22px rgba(16, 98, 224, 0.35); position:relative; overflow:hidden; padding:3.2rem; backdrop-filter: blur(8px); }
+    .launch-card { background: linear-gradient(145deg, rgba(2,14,44,0.94) 0%, rgba(8,29,76,0.97) 85%); border: 1px solid rgba(82, 155, 255, 0.3); border-radius: 1rem; box-shadow: 0 0 22px rgba(16, 98, 224, 0.35); position:relative; overflow:hidden; padding:2.3rem; backdrop-filter: blur(8px); display:flex; flex-direction:column; }
+
+    @media (max-width: 550px) {
+      .grid-2 { grid-template-columns: 1fr; }
+      .launch-card { padding: 0.5rem !important; }
+      .launch-head h2 { font-size: 1rem; }
+      .tag { font-size:0.68rem; padding:.2rem .5rem; }
+      .progress-wrap { height: 8px; }
+      .rocket { width: 12px; height: 28px; bottom: 12px; right: 11px; }
+    }
     .launch-card::before { content:''; position:absolute; inset:0; background:url('https://images.unsplash.com/photo-1532545009687-cd6531da6a95?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat; opacity:0.12; mix-blend-mode:screen; }
     .launch-head { position:relative; z-index:1; display:flex; justify-content:space-between; align-items:center; margin-bottom:.85rem; }
     .launch-head h2 { margin:0; font-size:1.1rem; letter-spacing:.04em; color:#eaf3ff; }
     .tag { font-size:.74rem; border-radius:999px; padding:.24rem .68rem; background-color:rgba(90, 194, 255, .24); color:#bfe8ff; letter-spacing:.06em; }
-    .countdown { position:relative; z-index:1; font-family:'Orbitron','Lucida Console',monospace; color:#dbf1ff; font-size:clamp(2rem,6vw,3.2rem); line-height:1.05; text-align:center; text-shadow: 0 0 18px rgba(34, 200, 255, 0.6), 0 0 12px rgba(96,200,255,.4); }
+    .countdown-wrap { flex:1; display:flex; align-items:center; justify-content:center; position:relative; z-index:1; }
+    .countdown { font-family:'Orbitron','Lucida Console',monospace; color:#dbf1ff; font-size:clamp(2rem,6vw,3.2rem); line-height:1.05; text-align:center; text-shadow: 0 0 18px rgba(34, 200, 255, 0.6), 0 0 12px rgba(96,200,255,.4); }
     .small { margin-top:.35rem; font-size:.86rem; text-align:center; color:#bad1eb; }
-    .progress-wrap { position:relative; width:100%; height:9px; background:rgba(9,19,52,0.8); border-radius:999px; margin:1.1rem 0 .5rem; border:1px solid rgba(104, 174, 255, 0.25); }
+    .progress-wrap { position:relative; width:100%; height:2.3px; background:rgba(9,19,52,0.8); border-radius:999px; margin:0 0 2rem 0; border:1px solid rgba(104, 174, 255, 0.25); }
     .progress-fill { height:100%; width:0%; background:linear-gradient(90deg,#7ce9ff,#43a9ff); border-radius:999px; transition:width .3s ease; }
     .rocket { width:14px; height:32px; position:absolute; right:16px; bottom:14px; background: linear-gradient(180deg,#f7fbff,#d0e7ff); border-radius:6px 6px 3px 3px; box-shadow:0 0 14px rgba(76,214,255,.85), inset 0 0 5px rgba(12,74,137,.7); transform-origin:center; animation: soothe 1.2s infinite ease-in-out; }
     .rocket::after { content:''; position:absolute; top:-8px; left:-5px; width:24px; height:10px; border-radius:50% 50% 0 0; background:radial-gradient(circle at 50% 100%, #e9f3ff 0%, #b1d8ff 60%, transparent 100%); }
@@ -72,7 +82,8 @@
                 class="tag">May 18, 2026</span></div>
             <div class="progress-wrap"><div class="progress-fill"
                 id="fill3"></div></div>
-            <div class="countdown" id="clock3">00d 00h 00m 00s</div>
+            <div class="countdown-wrap"><div class="countdown" id="clock3">00d
+                00h 00m 00s</div></div>
           </section>
 
           <section class="launch-card" id="widget-1">
@@ -80,9 +91,9 @@
                 2026</span></div>
             <div class="progress-wrap"><div class="progress-fill"
                 id="fill1"></div></div>
-            <div class="countdown" id="clock1">00d 00h 00m 00s</div>
+            <div class="countdown-wrap"><div class="countdown" id="clock1">00d
+                00h 00m 00s</div></div>
           </section>
-          
 
         </div>
         <div class="grid-2">
@@ -92,7 +103,8 @@
                 2026</span></div>
             <div class="progress-wrap"><div class="progress-fill"
                 id="fill4"></div></div>
-            <div class="countdown" id="clock4">00d 00h 00m 00s</div>
+            <div class="countdown-wrap"><div class="countdown" id="clock4">00d
+                00h 00m 00s</div></div>
           </section>
 
           <section class="launch-card" id="widget-2">
@@ -100,7 +112,8 @@
                 2026</span></div>
             <div class="progress-wrap"><div class="progress-fill"
                 id="fill2"></div></div>
-            <div class="countdown" id="clock2">00d 00h 00m 00s</div>
+            <div class="countdown-wrap"><div class="countdown" id="clock2">00d
+                00h 00m 00s</div></div>
           </section>
         </div>
       </div>
