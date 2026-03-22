@@ -1,0 +1,154 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Launch Countdown</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-MQnaPnJpPmbc80OjIjzzrF3wxeZ4W2JFcp0NhB8tWZc+4BlbaO8D93fEJyDqH4N0"
+      crossorigin="anonymous" />
+    <style>
+    :root { --text: #f5f8ff; }
+    body, html { margin:0; padding:0; width:100%; height:100%; font-family:'Poppins', 'Segoe UI', sans-serif; background: radial-gradient(circle at 30% 30%, #20305d 0%, #060a24 45%, #030318 100%); color: var(--text); }
+    .stars { position: fixed; inset:0; z-index:1; background: transparent; box-shadow: 0 0 1px #fff,10px 20px 1px #fff,34px 120px 1px #fff,45px 85px 1px #fff,70px 186px 1px #fff,105px 65px 1px #fff,140px 237px 1px #fff; animation: twinkle 4s infinite; }
+    @keyframes twinkle { 50% { opacity: 0.7; } }
+    .nebula { position: fixed; inset:0; z-index:1; pointer-events:none; background: radial-gradient(circle at 15% 25%, rgba(95, 163, 255, .2), transparent 35%), radial-gradient(circle at 80% 10%, rgba(255, 81, 177, .14), transparent 30%), radial-gradient(circle at 45% 70%, rgba(24, 189, 255, .1), transparent 50%); mix-blend-mode: screen; }
+    .bridge { position: relative; z-index: 2; min-height:100vh; }
+    .hero { max-width: 1280px; margin:auto; padding:1.5rem; display:grid; gap:1rem; grid-template-columns:1fr; }
+    .titlebox { text-align:center; margin-bottom:1rem; }
+    .titlebox h1 { margin:0; font-size:clamp(2rem,6vw,3.2rem); letter-spacing:0.08em; color:#fcfdff; text-shadow: 0 0 20px rgba(84, 186, 255, .68); }
+    .titlebox p { margin:.45rem 0 0; color:#d8e5ff; font-size:1.03rem; }
+    .grid-2 { display:grid; gap:1rem; grid-template-columns:repeat(auto-fit,minmax(290px,1fr)); }
+    .launch-card { background: linear-gradient(145deg, rgba(2,14,44,0.94) 0%, rgba(8,29,76,0.97) 85%); border: 1px solid rgba(82, 155, 255, 0.3); border-radius: 1rem; box-shadow: 0 0 22px rgba(16, 98, 224, 0.35); position:relative; overflow:hidden; padding:3.2rem; backdrop-filter: blur(8px); }
+    .launch-card::before { content:''; position:absolute; inset:0; background:url('https://images.unsplash.com/photo-1532545009687-cd6531da6a95?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat; opacity:0.12; mix-blend-mode:screen; }
+    .launch-head { position:relative; z-index:1; display:flex; justify-content:space-between; align-items:center; margin-bottom:.85rem; }
+    .launch-head h2 { margin:0; font-size:1.1rem; letter-spacing:.04em; color:#eaf3ff; }
+    .tag { font-size:.74rem; border-radius:999px; padding:.24rem .68rem; background-color:rgba(90, 194, 255, .24); color:#bfe8ff; letter-spacing:.06em; }
+    .countdown { position:relative; z-index:1; font-family:'Orbitron','Lucida Console',monospace; color:#dbf1ff; font-size:clamp(2rem,6vw,3.2rem); line-height:1.05; text-align:center; text-shadow: 0 0 18px rgba(34, 200, 255, 0.6), 0 0 12px rgba(96,200,255,.4); }
+    .small { margin-top:.35rem; font-size:.86rem; text-align:center; color:#bad1eb; }
+    .progress-wrap { position:relative; width:100%; height:9px; background:rgba(9,19,52,0.8); border-radius:999px; margin:1.1rem 0 .5rem; border:1px solid rgba(104, 174, 255, 0.25); }
+    .progress-fill { height:100%; width:0%; background:linear-gradient(90deg,#7ce9ff,#43a9ff); border-radius:999px; transition:width .3s ease; }
+    .rocket { width:14px; height:32px; position:absolute; right:16px; bottom:14px; background: linear-gradient(180deg,#f7fbff,#d0e7ff); border-radius:6px 6px 3px 3px; box-shadow:0 0 14px rgba(76,214,255,.85), inset 0 0 5px rgba(12,74,137,.7); transform-origin:center; animation: soothe 1.2s infinite ease-in-out; }
+    .rocket::after { content:''; position:absolute; top:-8px; left:-5px; width:24px; height:10px; border-radius:50% 50% 0 0; background:radial-gradient(circle at 50% 100%, #e9f3ff 0%, #b1d8ff 60%, transparent 100%); }
+    @keyframes soothe { 0%,100%{ transform: translateY(0); } 50%{ transform: translateY(-8px); } }
+    .launched { color:#ff89a2; animation: pulse 1.5s infinite; }
+    @keyframes pulse { 0%,100% { text-shadow: 0 0 20px rgba(255, 121, 140, 0.8), 0 0 30px rgba(255,90,135,0.6); } 50% { text-shadow: 0 0 10px rgba(255, 121, 140, 0.6), 0 0 18px rgba(255,90,135,0.5); } }
+    @media (max-width: 768px) { .countdown { font-size:clamp(1.8rem,6vw,3.2rem); }}
+  </style>
+  </head>
+  <body>
+    <div class="stars"></div>
+    <div class="nebula"></div>
+    <div class="bridge">
+      <div class="hero">
+        <div class="titlebox">
+          <h1>Tracker Countdown</h1>
+        </div>
+
+        <div class="grid-2">
+
+          <section class="launch-card" id="widget-3">
+            <div class="launch-head"><h2>Interview Begin - Project G</h2><span
+                class="tag">May 18, 2026</span></div>
+            <div class="progress-wrap"><div class="progress-fill"
+                id="fill3"></div></div>
+            <div class="countdown" id="clock3">00d 00h 00m 00s</div>
+          </section>
+
+          <section class="launch-card" id="widget-4">
+            <div class="launch-head"><h2>Interview Begin - Project B</h2><span class="tag">Jul
+                6,
+                2026</span></div>
+            <div class="progress-wrap"><div class="progress-fill"
+                id="fill4"></div></div>
+            <div class="countdown" id="clock4">00d 00h 00m 00s</div>
+          </section>
+
+        </div>
+        <div class="grid-2">
+          <section class="launch-card" id="widget-1">
+            <div class="launch-head"><h2>Gratuity</h2><span class="tag">Jun 17,
+                2026</span></div>
+            <div class="progress-wrap"><div class="progress-fill"
+                id="fill1"></div></div>
+            <div class="countdown" id="clock1">00d 00h 00m 00s</div>
+          </section>
+
+          <section class="launch-card" id="widget-2">
+            <div class="launch-head"><h2>Bonus</h2><span class="tag">Aug 2,
+                2026</span></div>
+            <div class="progress-wrap"><div class="progress-fill"
+                id="fill2"></div></div>
+            <div class="countdown" id="clock2">00d 00h 00m 00s</div>
+          </section>
+        </div>
+      </div>
+    </div>
+
+    <script>
+    const launchTargets = {
+      launch1: '2026-06-17T23:59:59',
+      launch2: '2026-08-02T23:59:59',
+      launch3: '2026-05-16T23:59:59',
+      launch4: '2026-07-01T23:59:59'
+    };
+
+    const widgets = [
+      { id: 'widget-1', targetKey: 'launch1', clock: 'clock1', state: 'state1', fill:'fill1', totalMs: null },
+      { id: 'widget-2', targetKey: 'launch2', clock: 'clock2', state: 'state2', fill:'fill2', totalMs: null },
+      { id: 'widget-3', targetKey: 'launch3', clock: 'clock3', state: 'state3', fill:'fill3', totalMs: null },
+      { id: 'widget-4', targetKey: 'launch4', clock: 'clock4', state: 'state4', fill:'fill4', totalMs: null }
+    ];
+
+    const format = (ms) => {
+      let total = Math.max(0, ms);
+      const d = Math.floor(total / 86400000); total %= 86400000;
+      const h = Math.floor(total / 3600000); total %= 3600000;
+      const m = Math.floor(total / 60000); total %= 60000;
+      const s = Math.floor(total / 1000);
+      return `${String(d).padStart(2,'0')}d ${String(h).padStart(2,'0')}h ${String(m).padStart(2,'0')}m ${String(s).padStart(2,'0')}s`;
+    };
+
+    function updateWidget(widget) {
+      const clockText = document.getElementById(widget.clock);
+      const stateText = document.getElementById(widget.state);
+      const fillBar = document.getElementById(widget.fill);
+
+      const targetTime = new Date(launchTargets[widget.targetKey]);
+      if (Number.isNaN(targetTime)) {
+        clockText.textContent = 'Invalid target';
+        stateText.textContent = 'Target date not configured';
+        fillBar.style.width = '0%';
+        return;
+      }
+
+      const now = new Date();
+      const rem = targetTime - now;
+      if (rem <= 0) {
+        clockText.textContent = '00d 00h 00m 00s';
+        stateText.innerHTML = '<span class="launched">🚀 Launch Achieved</span>';
+        fillBar.style.width = '100%';
+        return;
+      }
+
+      const remainingDays = Math.floor(rem / 86400000);
+      const totalMs = widget.totalMs || (targetTime - now);
+      widget.totalMs = totalMs;
+      const percent = totalMs > 0 ? Math.min(100, Math.max(0, ((totalMs - rem) / totalMs) * 100)) : 0;
+
+      clockText.textContent = format(rem);
+    //   stateText.textContent = `Target: ${launchTargets[widget.targetKey]} | ${remainingDays} day${remainingDays === 1 ? '' : 's'} left`;
+      fillBar.style.width = `${percent.toFixed(1)}%`;
+    }
+
+    function init() {
+      widgets.forEach(w => updateWidget(w));
+      setInterval(() => widgets.forEach(updateWidget), 1000);
+    }
+
+    window.onload = init;
+  </script>
+  </body>
+</html>
