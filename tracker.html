@@ -21,7 +21,23 @@
     .titlebox h1 { margin:0; font-size:clamp(2rem,6vw,3.2rem); letter-spacing:0.08em; color:#fcfdff; text-shadow: 0 0 20px rgba(84, 186, 255, .68); }
     .titlebox p { margin:.45rem 0 0; color:#d8e5ff; font-size:1.03rem; }
     .grid-2 { display:grid; gap:1rem; grid-template-columns:repeat(auto-fit,minmax(290px,1fr)); }
-    .launch-card { background: linear-gradient(145deg, rgba(2,14,44,0.94) 0%, rgba(8,29,76,0.97) 85%); border: 1px solid rgba(82, 155, 255, 0.3); border-radius: 1rem; box-shadow: 0 0 22px rgba(16, 98, 224, 0.35); position:relative; overflow:hidden; padding:3.2rem; backdrop-filter: blur(8px); }
+
+    @media (max-width: 900px) {
+      .hero { padding: 1rem; }
+      .launch-card { min-height: 250px; }
+      .countdown { font-size: clamp(1.5rem, 8vw, 3rem); letter-spacing: 0.06em; }
+      .titlebox h1 { font-size: clamp(1.8rem, 8vw, 2.8rem); }
+      .titlebox p { font-size: 0.95rem; }
+    }
+
+    @media (max-width: 550px) {
+      .grid-2 { grid-template-columns: 1fr; }
+      .launch-card { padding: 0.8rem; }
+      .launch-head h2 { font-size: 1rem; }
+      .tag { font-size:0.68rem; padding:.2rem .5rem; }
+      .progress-wrap { height: 8px; }
+      .rocket { width: 12px; height: 28px; bottom: 12px; right: 11px; }
+    }    .launch-card { background: linear-gradient(145deg, rgba(2,14,44,0.94) 0%, rgba(8,29,76,0.97) 85%); border: 1px solid rgba(82, 155, 255, 0.3); border-radius: 1rem; box-shadow: 0 0 22px rgba(16, 98, 224, 0.35); position:relative; overflow:hidden; padding:3.2rem; backdrop-filter: blur(8px); }
     .launch-card::before { content:''; position:absolute; inset:0; background:url('https://images.unsplash.com/photo-1532545009687-cd6531da6a95?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat; opacity:0.12; mix-blend-mode:screen; }
     .launch-head { position:relative; z-index:1; display:flex; justify-content:space-between; align-items:center; margin-bottom:.85rem; }
     .launch-head h2 { margin:0; font-size:1.1rem; letter-spacing:.04em; color:#eaf3ff; }
@@ -50,30 +66,31 @@
         <div class="grid-2">
 
           <section class="launch-card" id="widget-3">
-            <div class="launch-head"><h2>Interview Begin - Project G</h2><span
+            <div class="launch-head"><h2>Interview G</h2><span
                 class="tag">May 18, 2026</span></div>
             <div class="progress-wrap"><div class="progress-fill"
                 id="fill3"></div></div>
             <div class="countdown" id="clock3">00d 00h 00m 00s</div>
           </section>
 
-          <section class="launch-card" id="widget-4">
-            <div class="launch-head"><h2>Interview Begin - Project B</h2><span class="tag">Jul
-                6,
-                2026</span></div>
-            <div class="progress-wrap"><div class="progress-fill"
-                id="fill4"></div></div>
-            <div class="countdown" id="clock4">00d 00h 00m 00s</div>
-          </section>
-
-        </div>
-        <div class="grid-2">
           <section class="launch-card" id="widget-1">
             <div class="launch-head"><h2>Gratuity</h2><span class="tag">Jun 17,
                 2026</span></div>
             <div class="progress-wrap"><div class="progress-fill"
                 id="fill1"></div></div>
             <div class="countdown" id="clock1">00d 00h 00m 00s</div>
+          </section>
+          
+
+        </div>
+        <div class="grid-2">
+          <section class="launch-card" id="widget-4">
+            <div class="launch-head"><h2>Interview B</h2><span class="tag">Jul
+                6,
+                2026</span></div>
+            <div class="progress-wrap"><div class="progress-fill"
+                id="fill4"></div></div>
+            <div class="countdown" id="clock4">00d 00h 00m 00s</div>
           </section>
 
           <section class="launch-card" id="widget-2">
