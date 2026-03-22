@@ -32,12 +32,14 @@
 
     @media (max-width: 550px) {
       .grid-2 { grid-template-columns: 1fr; }
-      .launch-card { padding: 0.8rem; }
+      .launch-card { padding: 0.5rem; }
       .launch-head h2 { font-size: 1rem; }
       .tag { font-size:0.68rem; padding:.2rem .5rem; }
       .progress-wrap { height: 8px; }
       .rocket { width: 12px; height: 28px; bottom: 12px; right: 11px; }
-    }    .launch-card { background: linear-gradient(145deg, rgba(2,14,44,0.94) 0%, rgba(8,29,76,0.97) 85%); border: 1px solid rgba(82, 155, 255, 0.3); border-radius: 1rem; box-shadow: 0 0 22px rgba(16, 98, 224, 0.35); position:relative; overflow:hidden; padding:3.2rem; backdrop-filter: blur(8px); }
+    }
+
+    .launch-card { background: linear-gradient(145deg, rgba(2,14,44,0.94) 0%, rgba(8,29,76,0.97) 85%); border: 1px solid rgba(82, 155, 255, 0.3); border-radius: 1rem; box-shadow: 0 0 22px rgba(16, 98, 224, 0.35); position:relative; overflow:hidden; padding:3.2rem; backdrop-filter: blur(8px); }
     .launch-card::before { content:''; position:absolute; inset:0; background:url('https://images.unsplash.com/photo-1532545009687-cd6531da6a95?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat; opacity:0.12; mix-blend-mode:screen; }
     .launch-head { position:relative; z-index:1; display:flex; justify-content:space-between; align-items:center; margin-bottom:.85rem; }
     .launch-head h2 { margin:0; font-size:1.1rem; letter-spacing:.04em; color:#eaf3ff; }
